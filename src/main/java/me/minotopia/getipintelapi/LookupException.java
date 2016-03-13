@@ -2,9 +2,8 @@ package me.minotopia.getipintelapi;
 
 import lombok.Getter;
 
-@Getter
 public class LookupException extends Exception {
-
+	@Getter
     private final LookupResult result;
     private final Boolean rateLimited;
 
