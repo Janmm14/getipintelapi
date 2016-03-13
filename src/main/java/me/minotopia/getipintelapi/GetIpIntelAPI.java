@@ -23,12 +23,12 @@ public class GetIpIntelAPI {
      */
     private final String contactEmail;
 
-    private String computeAddress() {
-        return URL_START + "&contact=" + contactEmail + '&' + checkType.getFlag() + '=' + checkType.getFlagValue();
+    private String computeAddress(String ip) {
+        return URL_START + "&contact=" + contactEmail + '&' + checkType.getFlag() + '=' + checkType.getFlagValue() + "&ip=" + ip;
     }
 
-    public LookupResult doLookup() throws IOException, LookupException {
-        String address = computeAddress();
+    public LookupResult doLookup(String ip) throws IOException, LookupException {
+        String address = computeAddress(ip);
         URL url = new URL(address);
         HttpURLConnection con = ((HttpURLConnection) url.openConnection());
         con.setRequestMethod("GET");
