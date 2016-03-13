@@ -1,7 +1,6 @@
 package me.minotopia.getipintelapi;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
 
 import java.io.BufferedReader;
@@ -48,12 +47,12 @@ public class GetIpIntelAPI {
         String response = responseBuilder.toString();
 
         Gson gson = new Gson();
-        LookupResult lookupResult = gson.fromJson(response, LookupResult.class);
-        if (lookupResult.getStatus().equalsIgnoreCase("success")) {
-            return lookupResult;
+        RawLookupResult rawLookupResult = gson.fromJson(response, RawLookupResult.class);
+        if (rawLookupResult.getStatus().equalsIgnoreCase("success")) {
+            return rawLookupResult.toLookupResult();
         }
         //400 - error
         //429 - rate limit
-        throw new LookupException(lookupResult, "Response code: " + responseCode);
+        throw new LookupException(rawLookupResult, "Response code: " + responseCode);
     }
 }
