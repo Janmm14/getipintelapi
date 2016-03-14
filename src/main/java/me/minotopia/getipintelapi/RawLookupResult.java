@@ -1,5 +1,6 @@
 package me.minotopia.getipintelapi;
 
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,17 +16,17 @@ import org.jetbrains.annotations.Nullable;
  * <p>Use {@link #toLookupResult()}</p>
  */
 public class RawLookupResult {
-    private String status; //"success" or "error"
-    private double result;
-    private String queryIP;
+	private String status; //"success" or "error"
+	private double result;
+	private String queryIP;
 	@Nullable
-    private String queryFlags;
-    private String queryFormat;
-    private String contact;
+	private String queryFlags;
+	private String queryFormat;
+	private String contact;
 
-    private String message;
+	private String message;
 
-	@Setter
+	@Setter(AccessLevel.PACKAGE)
 	private Integer responseCode;
 
 	public LookupResult toLookupResult() {
