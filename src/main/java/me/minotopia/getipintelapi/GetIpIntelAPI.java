@@ -26,7 +26,7 @@ public class GetIpIntelAPI {
         return URL_START + "&contact=" + contactEmail + '&' + checkType.getFlag() + '=' + checkType.getFlagValue() + "&ip=" + ip;
     }
 
-    public LookupResult doLookup(String ip) throws IOException, LookupException {
+    public LookupResult doLookup(String ip) throws IOException {
         String address = computeAddress(ip);
         URL url = new URL(address);
         HttpURLConnection con = ((HttpURLConnection) url.openConnection());
@@ -48,11 +48,7 @@ public class GetIpIntelAPI {
 
         Gson gson = new Gson();
         RawLookupResult rawLookupResult = gson.fromJson(response, RawLookupResult.class);
-        if (rawLookupResult.getStatus().equalsIgnoreCase("success")) {
-            return rawLookupResult.toLookupResult();
-        }
-        //400 - error
-        //429 - rate limit
-        throw new LookupException(rawLookupResult, "Response code: " + responseCode);
+		rawLookupResult.setResponseCode(responseCode);
+		return rawLookupResult.toLookupResult();
     }
 }
