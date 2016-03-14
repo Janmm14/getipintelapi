@@ -1,6 +1,7 @@
 package me.minotopia.getipintelapi;
 
 import com.google.gson.Gson;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.io.BufferedReader;
@@ -14,6 +15,7 @@ import java.net.URL;
  * <p>This class holds the settings of the API getipintel.net offers.</p>
  * <p>General information about the api available at <a href="http://getipintel.net/#api">http://getipintel.net/#api</a></p>
  */
+@Getter
 @RequiredArgsConstructor
 public class GetIpIntelAPI {
 	private static final String URL_START = "http://check.getipintel.net/check.php?format=json";
