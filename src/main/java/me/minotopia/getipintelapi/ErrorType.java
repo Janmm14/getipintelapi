@@ -6,6 +6,7 @@ import java.util.Map;
 /**
  * Represents the error types the GetIpIntelAPI could return.
  */
+@SuppressWarnings("unused")
 public enum ErrorType {
 	/**
 	 * no ip address provided
@@ -49,8 +50,8 @@ public enum ErrorType {
 	}
 
 	/**
-	 * @param id the id used by getipintel.net for
-	 * @return
+	 * @param id the error id used by getipintel.net
+	 * @return the ErrorType which represents the given error id
 	 */
 	public static ErrorType byId(int id) {
 		return idToError.get(id);
